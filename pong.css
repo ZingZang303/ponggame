@@ -43,7 +43,7 @@ h3 {
     padding: 0px;
     width: 35%;
     height: 50%;
-    box-shadow:   15px 15px 8px red, 15px 15px 8px yellow, 15px 15px 8px orange;
+    box-shadow:15px 15px 8px red, 15px 15px 8px yellow, 15px 15px 8px orange;
 }
 canvas{
     background-color: black;

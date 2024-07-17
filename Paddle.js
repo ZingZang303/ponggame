@@ -1,5 +1,5 @@
 const SIDE = {NONE: 0, LEFT:1, RIGHT: 2};
-const paddleHitSound = document.getElementById('paddleHitSound');
+
 
 
 class Paddle {

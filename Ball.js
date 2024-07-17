@@ -27,8 +27,6 @@ class Ball {
     }
 
     bounce(things) {
-        paddleHitSound.currentTime = 0; // Rewind sound to start
-        paddleHitSound.play(); // Play sound on collision
         this.bounceWalls();
         for (let thing of things) {
             if (thing instanceof Paddle) {
