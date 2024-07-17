@@ -27,6 +27,8 @@ class Ball {
     }
 
     bounce(things) {
+        paddleHitSound.currentTime = 0; // Rewind sound to start
+        paddleHitSound.play(); // Play sound on collision
         this.bounceWalls();
         for (let thing of things) {
             if (thing instanceof Paddle) {
@@ -58,7 +60,8 @@ class Ball {
         if (this.y > paddle.y + paddle.l) return SIDE.NONE;
         if (this.vx < 0) {
             this.vx = paddleForce * Math.abs(this.vx);
-            //let paddlesPos = (this.y - paddle.y - paddle.l/2)
+            let paddlesPos = (this.y - paddle.y - paddle.l/2) / paddle.l * 2;
+            this.vy += paddlesPos * 1.75;
         }
         return SIDE.NONE;
     }
@@ -70,6 +73,8 @@ class Ball {
         if (this.y > paddle.y + paddle.l) return SIDE.NONE;
         if (this.vx > 0) {
             this.vx = -paddleForce * Math.abs(this.vx);
+            let paddlesPos = (this.y - paddle.y - paddle.l/2) / paddle.l * 2;
+            this.vy += paddlesPos * 1.75;
             //add other spin,etc.
             //add sound here if u want 
         }

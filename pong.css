@@ -1,18 +1,27 @@
 body {
     text-align: center;
-    font-family: 'Courier New', Courier, monospace;
-    background-color: #ffccff;
+    font-family: cursive;
+    background-image: linear-gradient(to right, red , yellow);
 }
 
 h1 {
-    
+    font-family: cursive;
     font-size: 60px;
-    margin: 0;
+    margin: 5px;
+    color: rgb(0, 0, 0);
+    text-shadow: 2px 2px 4px #ffffff;
+    text-decoration: underline;
+    text-decoration-line: underline;
+    text-decoration-color: black;
 }
 
 h3 {
-    font-family: 'Courier New', Courier, monospace;
-    margin: 0;
+    font-family: cursive;
+    margin: 5px;
+    color: black;
+    text-shadow: 10px 10px 10px rgb(255, 255, 255);
+    font-style: italic;
+
 }
 
 #scoreboard {
@@ -21,9 +30,21 @@ h3 {
 }
 
 #reset {
-    cursor: pointer;
+    cursor: crosshair;
     border-radius: 15px;
     width: 100px;
     height: 50px;
     font-family: 'Courier New', Courier, monospace;
+}
+
+#gameboard {
+    border-radius: 25px;
+    border: 10px solid black;
+    padding: 0px;
+    width: 35%;
+    height: 50%;
+    box-shadow:   15px 15px 8px red, 15px 15px 8px yellow, 15px 15px 8px orange;
+}
+canvas{
+    background-color: black;
 }

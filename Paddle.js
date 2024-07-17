@@ -1,4 +1,6 @@
 const SIDE = {NONE: 0, LEFT:1, RIGHT: 2};
+const paddleHitSound = document.getElementById('paddleHitSound');
+
 
 class Paddle {
     constructor(x,y,l,w,side, c){
@@ -22,6 +24,16 @@ class Paddle {
 
     move(isCPU){
         if(isCPU){
+            if(ball.y < this.y+(paddleLength/2)) {
+                this.vy = paddleVelocity*-1;
+            }
+            if(ball.y > this.y+(paddleLength/2)){
+                this.vy = paddleVelocity;
+            }
+            
+            
+            
+
             //ball.y <--where the ball is 
             //this.y <--- where the paddle is at
             //this.l <-- paddle lenght
