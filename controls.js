@@ -6,19 +6,19 @@ function keyDown(event) {
      switch (key) {
         case "KeyW":
             paddleL.vy = -paddleVelocity;
-            serveBallL = true;
+            serveBallUpL = true;
             break;
         case "KeyS":
             paddleL.vy = paddleVelocity;
-            serveBallL = true;
+            serveBallDownL = true;
             break;
         case "ArrowUp":
             paddleR.vy = -paddleVelocity;
-            serveBallR = true;
+            serveBallUpR = true;
             break;
         case "ArrowDown":
             paddleR.vy = paddleVelocity;
-            serveBallR = true;
+            serveBallDownR = true;
             break;
         case "KeyR":
             resetGame();
@@ -35,14 +35,20 @@ function keyUp(event) {
 
      switch (key) {
         case "KeyW":
+            paddleL.vy = 0;
+            serveBallUpL = false;
+            break;
         case "KeyS":
             paddleL.vy = 0;
-            serveBallL = false;
+            serveBallDownL = false;
             break;
         case "ArrowUp":
+            paddleR.vy = 0;
+            serveBallUpR = false;
+            break;
         case "ArrowDown":
             paddleR.vy = 0;
-            serveBallR = false;
+            serveBallDownR = false;
             break;
      }
 }

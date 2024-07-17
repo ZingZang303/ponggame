@@ -99,8 +99,10 @@ function play() {
 }
 
 let serveSide = SIDE.LEFT;
-let serveBallL = false;
-let serveBallR = false;
+let serveBallUpL = false;
+let serveBallDownL = false;
+let serveBallUpR = false;
+let serveBallDownR = false;
 function serve() {
     if(!ball instanceof Ball) {
         //create new ball depending on serve side
