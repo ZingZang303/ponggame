@@ -41,6 +41,7 @@ class Ball {
             }
             // if (thing instanceOf Obstacle) ....
         }
+        return SIDE.NONE;
     }
 
     bounceWalls() {
@@ -57,7 +58,7 @@ class Ball {
         if (this.y > paddle.y + paddle.l) return SIDE.NONE;
         if (this.vx < 0) {
             this.vx = paddleForce * Math.abs(this.vx);
-            //add other spin,etc.
+            //let paddlesPos = (this.y - paddle.y - paddle.l/2)
         }
         return SIDE.NONE;
     }
