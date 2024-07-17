@@ -11,14 +11,19 @@
     <h1>MY PONG GAME</h1>
     <h3>By: Zack and Chris</h3>
     <canvas id="gameboard" width="500" height="500"></canvas>
-    <audio id="paddleHitSound">
-        <source src="cong.mp3" type="audio/mp3">
+    <audio src="cong.mp3" id="paddlehitsound">
     </audio> 
-    <div id="scoreboard">0 : 0</div>
-    <button id="reset" onclick="resetGame()">RESET</button>
+    <div id="scoreboard">0:0</div>
+    <div id="button-container">
+        <button id="reset" onclick="resetGame()">RESET</button>
+        <button id="button"> LONG </button>
+    </div>
+    <br />
     <br />
     <input type="checkbox" id="cpucheck">
     <label>CPU Play</label>
+    
+    
 
     <script src="Ball.js"></script>
     <script src="Paddle.js"></script>

@@ -38,6 +38,7 @@ class Ball {
                     let side = this.bounceRightPaddle(thing);
                     if (side != SIDE.NONE) return side;
                 }
+               
             }
             // if (thing instanceOf Obstacle) ....
         }
@@ -60,6 +61,7 @@ class Ball {
             this.vx = paddleForce * Math.abs(this.vx);
             let paddlesPos = (this.y - paddle.y - paddle.l/2) / paddle.l * 2;
             this.vy += paddlesPos * 1.75;
+            paddleHitSound.play();
         }
         return SIDE.NONE;
     }
@@ -73,8 +75,7 @@ class Ball {
             this.vx = -paddleForce * Math.abs(this.vx);
             let paddlesPos = (this.y - paddle.y - paddle.l/2) / paddle.l * 2;
             this.vy += paddlesPos * 1.75;
-            //add other spin,etc.
-            //add sound here if u want 
+            paddleHitSound.play();
         }
         return SIDE.NONE;
     }

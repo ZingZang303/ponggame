@@ -1,6 +1,8 @@
 const gameboard = document.getElementById("gameboard");
 const cpucheck = document.getElementById("cpucheck");
 const ctx = gameboard.getContext("2d");
+const button = document.getElementById("button");
+
 const STATE = {STARTUP: 0, PLAYING: 1, SERVING: 2, GAMEOVER: 3};
 
 let state = STATE.STARTUP;
@@ -91,7 +93,8 @@ function play() {
             serveSide = SIDE.RIGHT;
         }
         updateScore();
-        //resetBall();
+        
+        if(scoreL >= 5 || scoreR >= 5) button.style.visibility = "visible";
 
         if(scoreL > 10 || scoreR > 10) return STATE.GAMEOVER;
         return STATE.SERVING;
@@ -161,4 +164,5 @@ function serve() {
 function updateScore() {
     const scoreboard = document.getElementById("scoreboard");
     scoreboard.innerHTML = `${scoreL} : ${scoreR}`;
+
 }
