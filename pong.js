@@ -13,7 +13,7 @@ let paddleWidth = 20;
 let paddleLength = 100;
 let ballRadius = 10;
 let paddleVelocity = 5;
-let paddleForce= 1.1; //110% speed 
+let paddleForce= 1.2; //110% speed 
 
 let ball;
 let paddleL;
