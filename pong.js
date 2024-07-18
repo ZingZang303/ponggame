@@ -2,6 +2,8 @@ const gameboard = document.getElementById("gameboard");
 const cpucheck = document.getElementById("cpucheck");
 const ctx = gameboard.getContext("2d");
 const button = document.getElementById("button");
+const speedButton = document.getElementById("speed-button");
+
 
 const STATE = {STARTUP: 0, PLAYING: 1, SERVING: 2, GAMEOVER: 3};
 
@@ -13,7 +15,7 @@ let paddleWidth = 20;
 let paddleLength = 100;
 let ballRadius = 10;
 let paddleVelocity = 5;
-let paddleForce= 1.2; //110% speed 
+let paddleForce= 1.1; //110% speed 
 
 let ball;
 let paddleL;
@@ -38,16 +40,31 @@ function resetGame() {
     state = STATE.STARTUP;
     clearInterval(intervalID);
     resetBall();
-    paddleL = new Paddle(0,(boardHeight/2)-(paddleLength/2), paddleLength, paddleWidth, SIDE.LEFT, "red");
-    paddleR = new Paddle(boardWidth-paddleWidth, (boardHeight/2)-(paddleLength/2), paddleLength, paddleWidth, SIDE.RIGHT, "green");
+    paddleL = new Paddle(2,(boardHeight/2)-(paddleLength/2), paddleLength, paddleWidth, SIDE.LEFT, "red");
+    paddleR = new Paddle(boardWidth-paddleWidth-2, (boardHeight/2)-(paddleLength/2), paddleLength, paddleWidth, SIDE.RIGHT, "green");
 
     nextTick();
 }
 
 function resetBall() {
-    ball = new Ball(boardWidth/2, boardHeight/2, -1, 0, ballRadius, "yellow");
+    ball = new Ball(boardWidth/2, boardHeight/2, -1, 0, ballRadius, "white");
     
 }
+
+function powerUp() {
+    paddleL.l *= 2;
+}
+function speed() {
+    paddleL.powerUp = 2;
+    paddleR.powerUp = .5;
+}
+function gameOver() {
+    clearBoard();
+    ctx.fillStyle = "white";
+    ctx.fillText("GAME OVER", 250,250)
+    return STATE.GAMEOVER;
+}
+    
 
 
 
@@ -64,13 +81,13 @@ function nextTick() {
             state = serve();
             break;
         case STATE.GAMEOVER:
-            state = STATE.GAMEOVER;
+            state = gameOver();
             break;
         default: 
             state = STATE.STARTUP;
             break;
     }
-    draw();
+    if (state != STATE.GAMEOVER) draw();
     intervalID = setTimeout(nextTick, 10);
 }
 
@@ -84,24 +101,21 @@ function play() {
     if(scoreSide != SIDE.NONE) {
         if(scoreSide == SIDE.LEFT) {
             scoreL++;
-            // ball = null;
             serveSide = SIDE.LEFT;
         } 
         if(scoreSide == SIDE.RIGHT){ 
             scoreR++;
-            // ball = null;
             serveSide = SIDE.RIGHT;
         }
         updateScore();
-        
+        if(scoreL >= 3 || scoreR >= 3) speedButton.style.visibility = "visible";
+
         if(scoreL >= 5 || scoreR >= 5) button.style.visibility = "visible";
 
-        if(scoreL > 10 || scoreR > 10) return STATE.GAMEOVER;
+        if(scoreL == 10 || scoreR == 10) return STATE.GAMEOVER;
         return STATE.SERVING;
     }
     ball.move();
-    //Add serving the ball?
-    // If a player wins, stop the game....
     return STATE.PLAYING;
 }
 
@@ -111,10 +125,9 @@ let serveBallDownL = false;
 let serveBallUpR = false;
 let serveBallDownR = false;
 function serve() {
+    paddleL.powerUp = 1;
     if(ball instanceof Ball) {
-        //create new ball depending on serve side
         if(serveSide == SIDE.LEFT){
-            // ball = Ball(paddleWidth, paddleL.y+paddleLength, 0, 0, ballRadius, "yellow");
             ball.x = paddleWidth + ball.r;
             ball.y = paddleL.y+(paddleLength/2);
             ball.vx = 0;
@@ -122,7 +135,6 @@ function serve() {
         }
 
         if(serveSide == SIDE.RIGHT){
-            // ball = Ball(500-paddleWidth, paddleR.y+paddleLength, 0, 0, ballRadius, "yellow");
             ball.x = 500-paddleWidth- ball.r;
             ball.y = paddleR.y+(paddleLength/2);
             ball.vx = 0;
@@ -133,13 +145,11 @@ function serve() {
         if(serveBallUpL) {
             ball.vx = 2;
             ball.vy = -Math.random()*2 - 1;
-            //give the ball a velocity
             return STATE.PLAYING;
         }
         if(serveBallDownL) {
             ball.vx = 2;
             ball.vy = Math.random()*2 + 1;
-            //give the ball a velocity
             return STATE.PLAYING;
         }
     }
@@ -147,13 +157,11 @@ function serve() {
         if(serveBallUpR) {
             ball.vx = -2;
             ball.vy = -Math.random()*2 - 1;
-            //give the ball a velocity
             return STATE.PLAYING;
         }
         if(serveBallDownR) {
             ball.vx = -2;
             ball.vy = Math.random()*2 + 1;
-            //give the ball a velocity
             return STATE.PLAYING;
         }
     }

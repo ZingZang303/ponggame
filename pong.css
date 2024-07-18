@@ -30,7 +30,7 @@ h3 {
     font-family: 'Courier New', Courier, monospace;
 }
 
-#reset, #button{
+#reset, #button, #speed-button{
     cursor: crosshair;
     border-radius: 15px;
     width: 100px;
@@ -52,7 +52,7 @@ canvas{
 .button-container {
     display: flex;
 }
-#button, #reset{
+#button, #reset, #speed-button {
     margin: 5 10px; /* Adds space between buttons */
     padding: 10px 20px; /* Adjust padding as needed */
     font-size: 16px; /* Adjust font size as needed */
@@ -60,5 +60,8 @@ canvas{
     
 }
 #button{
+    visibility: hidden;
+}
+#speed-button{
     visibility: hidden;
 }

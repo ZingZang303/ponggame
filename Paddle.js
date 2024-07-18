@@ -10,15 +10,18 @@ class Paddle {
         this.side=side;
         this.c=c;
         this.vy=0;
+        this.powerUp = 1;
     }
 
     draw(ctx){
         ctx.fillStyle = this.c;
-        ctx.strokeStyle = "black"
+        ctx.strokeStyle = "white"
         ctx.lineWidth = 2;
         
-        ctx.fillRect(this.x, this.y, this.w, this.l,); //Not H
-        ctx.strokeRect(this.x, this.y, this.w, this.l);
+        ctx.beginPath();
+        ctx.roundRect(this.x, this.y, this.w, this.l, [100]); 
+        ctx.stroke();
+        ctx.fill()
     }
 
     move(isCPU){
@@ -41,7 +44,7 @@ class Paddle {
             //control this.vy using ball
             // dont set this.y
         }
-        this.y += this.vy;
+        this.y += this.vy * this.powerUp;
         if (this.y < 0) this.y=0;
         if (this.y + this.l > boardHeight) this.y = boardHeight - this.l;
 

@@ -11,7 +11,7 @@ class Ball {
 
     draw(ctx) {
         ctx.fillStyle = this.c;
-        ctx.strokeStyle = "black";
+        ctx.strokeStyle = "white";
         ctx.lineWidth = 2;
 
 
@@ -51,7 +51,7 @@ class Ball {
         if (this.y + this.r > boardHeight)
             this.vy = -Math.abs(this.vy);
     }
-
+    
     bounceLeftPaddle(paddle) {
         if (this.x - this.r > paddle.w) return SIDE.NONE;
         if (this.x - this.r < 0) return SIDE.RIGHT; // Someone got a point....
